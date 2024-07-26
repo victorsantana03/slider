@@ -116,6 +116,7 @@ main .thumb .thumb-item{
     width: 135px;
     height: 200px;
     position: relative;
+    z-index: 3;
 }
 
 main .thumb .thumb-item img{
@@ -155,4 +156,101 @@ main .arrows button:hover{
     background-color: #eee;
     color:#000;
     transition:0.7s;
+}
+
+main.next .thumb{
+    animation: effectNextThumb 0.5s linear 1 forwards;
+}
+
+main.back .thumb{
+    animation: effectBackThumb 0.5s linear 1 forwards;
+    z-index: 3;
+}
+
+/* MOVIMENTO DA THUMB */
+@keyframes effectNextThumb {
+    from{
+       transform: translateX(150px); 
+    }
+}
+
+@keyframes effectBackThumb {
+    from{
+       transform: translateX(-150px); 
+    }
+}
+
+/* MOVIMENTO DA ÚLTIMA THUMB */
+main.next .thumb .thumb-item:nth-last-child(1) /* SELECIONAR O ULTIMO ELEMENTO DA THUMB */ {
+    animation: effectLastThumb 0.5s linear 1 forwards;
+} 
+
+@keyframes effectLastThumb{
+    from{
+        width: 0;
+        opacity: 0;
+    }
+}
+
+/* Textos Principais */
+
+main .list .list-item .content .title, .description, .buttons{
+    transform: translateY(50px);
+    filter: blur(10px);
+    opacity: 0;
+    animation: showContent 0.5s .5s linear 1 forwards;
+}
+
+@keyframes showContent{
+    to{
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+main .list .list-item .content .description{
+    animation-delay: 1s;
+}
+
+main .list .list-item .content .buttons{
+    animation-delay: 1.5s;
+}
+
+main.next .list .list-item:nth-last-child(1) img{
+    width: 135px;
+    height: 220px;
+    position: absolute;
+    bottom: 50px;
+    left: 80%;
+    border-radius: 30px;
+    animation: showMainImage 1s linear 1 forwards;
+}
+
+@keyframes showMainImage{
+    to{
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+main.back .list .list-item:nth-child(1) img{
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    animation: hideMainImage .5s linear 1 forwards;
+    z-index: 2;
+    border-radius: 30px;    
+}
+
+@keyframes hideMainImage{
+    to{
+        width: 135px;
+        height: 200px;
+        bottom: 50px;
+        left: 50%;
+        border-radius: 10px;       
+    }
 }

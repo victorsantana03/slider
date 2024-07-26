@@ -12,14 +12,19 @@ function moveItemsOnClick(type){
     let listItems = document.querySelectorAll(".list .list-item")
     let thumbItems = document.querySelectorAll(".thumb .thumb-item")
 
-    console.log(listItems)
-    console.log(thumbItems)
-
     if(type === "next"){
         list.appendChild(listItems[0])
         thumb.appendChild(thumbItems[0])
+        container.classList.add('next')
     } else{
         list.prepend(listItems[3])
         thumb.prepend(thumbItems[3])
+        container.classList.add('back')
     }
+
+    setTimeout(() => {
+        container.classList.remove('next')
+        container.classList.remove('back')
+    }, 1000);
+    
 }
